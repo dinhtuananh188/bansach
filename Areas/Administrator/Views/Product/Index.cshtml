@@ -1,0 +1,78 @@
+﻿@model List<Sach.Model.Models.Product>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+
+<div class="pagetitle">
+    <h1>Bảng điều khiển</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="Administrator" asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item active">Product</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Thông tin về các sản phẩm sách</h5>
+            <a href="/Administrator/Product/Create" class="btn btn-primary mb-2">Thêm mới</a>
+            <table class="table table-bordered border-primary table-responsive">
+                <thead>
+                    <tr>
+                        <th class="col-md-1">ID</th>
+                        <th class="col-md-2">Tên Sách</th>
+                        
+                        <th class="col-md-2">Tác Giả</th>
+                        <th class="col-md-2">Nhà xuất bản</th>
+                        <th class="col-md-1">Năm xuất bản</th>
+                        <th>Ảnh</th>
+                        <th>Ảnh thêm</th>
+                        <th class="col-md-1">Giá</th>
+                        <th class="col-md-1">Số lượng</th>
+                        
+                       
+                        
+                        <th class="col-md-1">Chỉnh sửa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        @foreach (var product in Model)
+                        {
+                            <tr>
+                                <td>@product.Id</td>
+                                <td>@product.Name</td>
+                                
+                                <td>@product.Author</td>
+                                <td>@product.Publisher</td>
+                                <td>@product.PublishedYear</td >         
+                                <td><img src="@product.Image" style="width:150px;height:100%"/></td>
+                                <td>
+                                    @if (product.MoreImage != null)
+                                    {
+                                        string[] imageUrls = product.MoreImage.Split(';');
+                                        foreach (var url in imageUrls)
+                                        {
+                                            <img src="@url" style="width:150px;height:100%">
+                                        }
+                                    }
+                                </td>
+                                <td>@product.Price</td>
+                                <td>@product.Quantity</td>                             
+                                <td>
+                                    <a href="/Administrator/Product/Edit/@product.Id" class="ri-edit-box-fill"></a>
+                                    <a href="/Administrator/Product/Delete/@product.Id" class="ri-delete-bin-2-fill"></a>
+                                </td>
+                            </tr>
+                        }
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

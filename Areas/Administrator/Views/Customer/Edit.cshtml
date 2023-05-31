@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+
+@model Sach.Model.Models.Customer
+
+
+<form asp-action="Edit" asp-controller="Customer" method="post" class="row g-3">
+    <div class="col-md-2">
+        <label asp-for="Id" class="form-label">ID</label>
+        <input class="form-control" asp-for="Id" value="@Model.Id">
+    </div>
+    <div class="col-md-8">
+        <label asp-for="FullName" class="form-label">Tên Khách Hàng</label>
+        <input class="form-control" asp-for="FullName" value="@Model.FullName">
+    </div>
+    <div class="col-6">
+        <label asp-for="Email" class="form-label">Email</label>
+        <input class="form-control" asp-for="Email" value="@Model.Email">
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Mobile" class="form-label">SĐT</label>
+        <input class="form-control" asp-for="Mobile" value="@Model.Mobile">
+    </div>
+    <div class="col-md-12">
+        <label asp-for="Address" class="form-label">Địa Chỉ</label>
+        <input class="form-control" asp-for="Address" value="@Model.Address">
+    </div>
+    <fieldset class="row mb-6">
+        <legend class="col-form-label col-sm-2 pt-0">Online/Offline</legend>
+        <div class="col-sm-10" asp-for="Status" value="@Model.Status">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" asp-for="Status" value="True" checked value="@Model.Status">
+                <label class="form-check-label" asp-for="Status" for="gridRadios1">
+                    Online
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" asp-for="Status" value="False" value="@Model.Status">
+                <label class="form-check-label" asp-for="Status" for="gridRadios2">
+                    Offline
+                </label>
+            </div>
+        </div>
+    </fieldset>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary" href="/Administrator/Customer/Index">Submit</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
+    </div>
+</form>

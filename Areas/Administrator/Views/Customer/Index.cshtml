@@ -1,0 +1,54 @@
+﻿@model List<Sach.Model.Models.Customer>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+
+<div class="pagetitle">
+    <h1>Bảng điều khiển</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="Administrator" asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item active">Customer</li>
+        </ol>
+    </nav>
+</div>
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Khách hàng</h5>
+            <a href="/Administrator/Customer/Create" class="btn btn-primary mb-2">Thêm mới</a>
+            <table class="table table-bordered border-primary">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Tên Đầy Đủ</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Mobile</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Trạng thái</th>
+                        <th scope="col">Chỉnh sửa</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td scope="row">@item.Id</td>
+                            <td>@item.FullName</td>
+                            <td>@item.Email</td>
+                            <td>@item.Mobile</td>
+                            <td>@item.Address</td>
+                            <td>@(item.Status.HasValue ? (item.Status.Value ? "Online" : "Offline") : "")</td>
+                            <td>
+                                <a href="/Administrator/Customer/Edit/@item.Id" class="ri-edit-box-fill"></a>
+                                <a href="/Administrator/Customer/Delete/@item.Id" class="ri-delete-bin-2-fill"></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,152 @@
+﻿@model Tuple<List<Sach.Model.Models.ProductCategory>,List<Sach.Model.Models.Product>>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<head>
+    <style>
+        .anh-popular img {
+            height : 200px;
+            width : 120px;
+        }
+    </style>
+
+        <title>Trang Chủ</title>
+
+</head>
+<!-- ##### Welcome Area Start ##### -->
+<section class="welcome_area bg-img background-overlay" style="background-image: url('https://toigingiuvedep.vn/wp-content/uploads/2021/01/background-trang-va-chong-sach.jpg');">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="hero-content">
+                        <h6>Sách Cũ</h6>
+                        <h2>Cũ nhưng CHẤT và HỜI</h2>
+                    <a asp-controller="Home" asp-action="Shop" class="btn essence-btn">view collection</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Welcome Area End ##### -->
+
+    <!-- ##### Top Catagory Area Start ##### -->
+    <div class="top_catagory_area section-padding-80 clearfix">
+        <div class="container">
+            <div class="row justify-content-center">
+                <!-- Single Catagory -->
+                <div class="col-12 col-sm-6 col-md-4">
+                <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url('https://thidaihoc.vn/wp-content/uploads/2021/09/van-tu-cua-van-hoc-hien-dai.jpg');">
+                        <div class="catagory-content">
+                            <a href="#">Văn học hiện đại</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Catagory -->
+                <div class="col-12 col-sm-6 col-md-4">
+                <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url(https://cf.shopee.vn/file/sg-11134201-22110-m0nfaijw61jv89);">
+                        <div class="catagory-content">
+                            <a href="#">Truyện</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Catagory -->
+                <div class="col-12 col-sm-6 col-md-4">
+                <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url(https://cungdocsach.vn/wp-content/uploads/2019/01/Ti%E1%BB%83u-thuy%E1%BA%BFt-b%C3%A1n-ch%E1%BA%A1y-nh%E1%BA%A5t2.jpg);">
+                        <div class="catagory-content">
+                            <a href="#">Tiểu thuyết</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Top Catagory Area End ##### -->
+
+    <!-- ##### CTA Area Start ##### -->
+    <div class="cta-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                <div class="cta-content bg-img background-overlay" style="background-image: url(https://img.lovepik.com/background/20211020/large/lovepik-book-knowledge-background-image_400077571.jpg);">
+                        <div class="h-100 d-flex align-items-center justify-content-end">
+                            <div class="cta--text">
+                                <h6>Giảm đến -60%</h6>
+                                <h2>So với sách mới</h2>
+                            <a asp-controller="Home" asp-action="Shop" class="btn essence-btn">Mua ngay</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### CTA Area End ##### -->
+
+    <!-- ##### New Arrivals Area Start ##### -->
+    <section class="new_arrivals_area section-padding-80 clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading text-center">
+                        <h2>Sách bán chạy</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="popular-products-slides owl-carousel">
+                    @foreach(var item in Model.Item2)
+                    {
+                        <div class="single-product-wrapper">
+                            <!-- Product Image -->
+                            <div class="product-img">
+                                <img class ="anh-popular" src="@item.Image" alt="" >
+                                <!-- Favourite -->
+                                <div class="product-favourite">
+                                    <a href="#" class="favme fa fa-heart"></a>
+                                </div>
+                            </div>
+                            <!-- Product Description -->
+                            <div class="product-description">
+                                @{
+                                    var it = item.CategoryId;
+                                    @foreach(var ite1 in Model.Item1)
+                                    {
+                                        if (@ite1.Id == it)
+                                        {
+                                            <span>@ite1.Name</span>
+                                            ;
+                                        }
+                                        
+                                    }
+                                }
+                                <a href="@Url.Action("Details", "Home", new {id = item.Id})">
+                                    <h6>@item.Name</h6>
+                                </a>
+                                <p class="product-price">@item.Price VNĐ</p>
+
+                                <!-- Hover Content -->
+                                <div class="hover-content">
+                                    <!-- Add to Cart -->
+                                    <div class="add-to-cart-btn" onclick="addToCart(@item.Id)">
+                                        <a href="#" class="btn essence-btn">Add to Cart</a>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### New Arrivals Area End ##### -->
+
+    <!-- ##### Brands Area Start ##### -->
+<!-- ##### Brands Area End ##### -->

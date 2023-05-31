@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+<div class="pagetitle">
+    <h1>Bảng điều khiển</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="Administrator" asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item active">Bảng điều khiển</li>
+        </ol>
+    </nav>
+</div>
+
+
+<div class="container bg-white rounded">
+    <br></br>
+        <h1 class="text-center mb-4">BẢNG ĐIỀU KHIỂN</h1>
+        <div class="row">
+            <div class="col">
+                <div class="table-responsive">
+                <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <h4><a asp-area="Administrator" asp-controller="Order" asp-action="Index">Order</a></h4>
+                                <p>Order lưu trữ thông tin đơn hàng khách hàng, bao gồm mã đơn hàng, tên, địa chỉ, email, số điện thoại và lời nhắn của khách hàng, ngày tạo đơn hàng, người tạo đơn hàng, phương thức thanh toán, trạng thái thanh toán và trạng thái đơn hàng.</p>
+                                </td>
+                                <td>
+                                    <h4><a asp-area="Administrator" asp-controller="Product" asp-action="Index">Product</a></h4>
+                                <p>Bảng Product lưu trữ thông tin về sách, bao gồm mã sản phẩm, tên, mã danh mục sản phẩm, tác giả, nhà xuất bản, năm xuất bản, hình ảnh, giá bán, số lượng tồn kho, mô tả, trạng thái và số lần xem sản phẩm.</p>
+                                </td>
+                                <td>
+                                    <h4><a asp-area="Administrator" asp-controller="Customer" asp-action="Index">Customer</a></h4>
+                                <p>Bảng Customer lưu trữ thông tin về khách hàng của cửa hàng sách cũ, bao gồm mã khách hàng, họ tên, email, số điện thoại, địa chỉ và trạng thái khách hàng (hoạt động hoặc không hoạt động).</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h4><a asp-area="Administrator" asp-controller="OrderDetail" asp-action="Index">Order Detail</a></h4>
+                                <p>Bảng OrderDetail lưu trữ thông tin về các chi tiết đơn hàng, bao gồm mã đơn hàng (khóa ngoại tham chiếu đến bảng Orders), mã sản phẩm (khóa ngoại tham chiếu đến bảng Products) và số lượng sản phẩm đặt hàng.</p>
+                                </td>
+                                <td>
+                                    <h4><a asp-area="Administrator" asp-controller="ProductCategory" asp-action="Index">Product Category</a></h4>
+                                    <p>Product Category để lưu trữ thông tin về các danh mục sách. Bảng này sẽ có các cột "ID" (mã danh mục), "Name" (tên danh mục) và "Description" (mô tả danh mục).
+</p>
+                                </td>
+                                <td>
+                                    <h4><a asp-area="Administrator" asp-controller="PublicationStatus" asp-action="Index">Publication Status</a></h4>
+                                <p>Bảng Publication Status lưu trữ danh sách các tình trạng xuất bản và mô tả chi tiết về từng tình trạng, bao gồm mã tình trạng, tên tình trạng và mô tả tình trạng. Bảng Products có thể có cột PublicationStatusID (khóa ngoại tham chiếu đến bảng PublicationStatuses) để lưu trữ thông tin về tình trạng xuất bản của sản phẩm.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h4><a asp-area="Administrator" asp-controller="Review" asp-action="Index">Review</a></h4>
+                                <p>Bảng Review lưu trữ thông tin về nhận xét của khách hàng về các sản phẩm sách, bao gồm mã nhận xét, mã sản phẩm (khóa ngoại tham chiếu đến bảng Products), mã khách hàng (khóa ngoại tham chiếu đến bảng Customers), điểm đánh giá của khách hàng và nội dung nhận xét của khách hàng.</p>
+                                </td>
+                                <td>
+                                    <h4><a asp-area="Administrator" asp-controller="WishList" asp-action="Index">Wish List</a></h4>
+                                <p>Bảng WishList lưu trữ thông tin về các sản phẩm mà khách hàng muốn mua sau này, bao gồm mã sản phẩm (khóa ngoại tham chiếu đến bảng Products), mã khách hàng (khóa ngoại tham chiếu đến bảng Customers) và ngày thêm sản phẩm vào danh sách mong muốn.</p>
+                                </td>
+                            <td>
+                                <h4><a asp-area="Administrator" asp-controller="BookRestoration" asp-action="Index">Book Restoration</a></h4>
+                                <p>Bảng "BookRestoration" lưu thông tin về sách bị phục chế với các cột như "ID", "RestorationDate", "RestoredBy", "Notes". Bảng "Products" có cột "RestorationID" để lưu trữ thông tin về việc phục chế sách.</p>
+                            </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>

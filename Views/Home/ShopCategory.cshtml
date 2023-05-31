@@ -1,0 +1,178 @@
+﻿
+@{
+    ViewData["Title"] = "ShopCategory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Tuple<Sach.Model.Models.ProductCategory,List<Sach.Model.Models.ProductCategory>,List<Sach.Model.Models.Product>>
+
+
+    <head>
+        <title>@Model.Item1.Name</title>
+    </head>
+<!-- ##### Breadcumb Area Start ##### -->
+<div class="breadcumb_area bg-img" style="background-image: url('/plug/img/bg-img/breadcumb.jpg');">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="page-title text-center">
+                    <h2>@Model.Item1.Name</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Breadcumb Area End ##### -->
+<!-- ##### Shop Grid Area Start ##### -->
+<section class="shop_grid_area section-padding-80">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-4 col-lg-3">
+                <div class="shop_sidebar_area">
+
+                    <!-- ##### Single Widget ##### -->
+                    <div class="widget catagory mb-50">
+                        <!-- Widget Title -->
+                        <h6 class="widget-title mb-30">Danh mục</h6>
+
+                        <!--  Catagories  -->
+                        <div class="catagories-menu">
+                            @foreach (var item in Model.Item2)
+                            {
+                                <ul class="sub-menu collapse show" id="clothing">
+                                    <li><a href="@Url.Action("ShopCategory", "Home", new {id = item.Id})">@item.Name</a></li>
+                                </ul>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- ##### Single Widget ##### -->
+                    <div class="widget price mb-50">
+                        <!-- Widget Title -->
+                        <h6 class="widget-title mb-30">Filter by</h6>
+                        <!-- Widget Title 2 -->
+                        <p class="widget-title2 mb-30">Price</p>
+
+                        <div class="widget-desc">
+                            <div class="slider-range">
+                                <div data-min="49" data-max="360" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="49" data-value-max="360" data-label-result="Range:">
+                                    <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
+                                    <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
+                                    <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
+                                </div>
+                                <div class="range-price">Range: $49.00 - $360.00</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            <div class="col-12 col-md-8 col-lg-9">
+                <div class="shop_grid_product_area">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="product-topbar d-flex align-items-center justify-content-between">
+                                <!-- Total Products -->
+                                <div class="total-products">
+                                    @{
+                                        int count = 0;
+                                    }
+                                    @foreach (var item in Model.Item3)
+                                    {
+                                        if (item.CategoryId == Model.Item1.Id)
+                                        {
+                                            count++;
+                                        }
+                                    }
+                                    <p><span>@count </span>Sản phẩm</p>
+                                </div>
+                                <!-- Sorting -->
+                                <div class="product-sorting d-flex">
+                                    <p>Sort by:</p>
+                                    <form action="#" method="get">
+                                        <select name="select" id="sortByselect">
+                                            <option value="value">Highest Rated</option>
+                                            <option value="value">Newest</option>
+                                            <option value="value">Price: $$ - $</option>
+                                            <option value="value">Price: $ - $$</option>
+                                        </select>
+                                        <input type="submit" class="d-none" value="">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        @foreach (var item in Model.Item3)
+                        {
+                            if (item.CategoryId == @Model.Item1.Id)
+                            {
+                                <!-- Single Product -->
+                                <div class="col-12 col-sm-6 col-lg-4">
+
+                                    <div class="single-product-wrapper">
+                                        <!-- Product Image -->
+                                        <div class="product-img">
+                                            <img src="@item.Image" alt="">
+
+                                            <!-- Favourite -->
+                                            <div class="product-favourite">
+                                                <a href="#" class="favme fa fa-heart"></a>
+                                            </div>
+                                        </div>
+
+                                        <!-- Product Description -->
+                                        <div class="product-description">
+                                            @foreach (var ti in Model.Item2)
+                                            {
+                                                if (@ti.Id == @item.CategoryId)
+                                                {
+                                                    <span>@ti.Name</span>
+                                                }
+                                            }
+
+                                            <a href="@Url.Action("Details", "Home", new {id = item.Id})">
+                                                <h6>@item.Name</h6>
+                                            </a>
+                                            <p>@item.Condition</p>
+                                            <p class="product-price">@item.Price VNĐ</p>
+
+                                            <!-- Hover Content -->
+                                            <div class="hover-content">
+                                                <!-- Add to Cart -->
+                                                <div class="add-to-cart-btn">
+                                                    <a href="#" class="btn essence-btn"onclick="addToCart(@item.Id)">Add to Cart</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            }
+                        }
+
+
+
+                    </div>
+                </div>
+                <!-- Pagination -->
+                <nav aria-label="navigation">
+                    <ul class="pagination mt-50 mb-70">
+                        <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">...</a></li>
+                        <li class="page-item"><a class="page-link" href="#">21</a></li>
+                        <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,46 @@
+﻿@model List<Sach.Model.Models.ProductCategory>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+<div class="pagetitle">
+    <h1>Bảng điều khiển</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="Administrator" asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item active">Product Category</li>
+        </ol>
+    </nav>
+</div>
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Danh sách loại sản phẩm</h5>
+            <a href="/Administrator/ProductCategory/Create" class="btn btn-primary mb-2">Thêm mới</a>
+            <table class="table table-bordered border-primary">
+                <thead>
+                    <tr>
+                        <th scope="col">Mã loại SP</th>
+                        <th scope="col">Tên loại SP</th>
+                        <th scope="col">Mô Tả</th>
+                        <th scope="col">Chỉnh sửa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td scope ="row">@item.Id</td>
+                            <td>@item.Name</td>
+                            <td>@item.Description</td>
+                            <td>
+                                <a href="/Administrator/ProductCategory/Edit/@item.Id" class="ri-edit-box-fill"></a>
+                                <a href="/Administrator/ProductCategory/Delete/@item.Id" class="ri-delete-bin-2-fill"></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+﻿@model List<Sach.Model.Models.Order>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+<div class="pagetitle">
+    <h1>Bảng điều khiển</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="Administrator" asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item active">Order</li>
+        </ol>
+    </nav>
+</div>
+<head>
+    <style>
+        
+    </style>
+</head>
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Thông tin đơn hàng</h5>
+            <a href="/Administrator/Order/Create" class="btn btn-primary mb-2">Thêm mới</a>
+            <table class="table table-bordered border-primary">
+                <thead>
+                    <tr>
+                        <th scope="col">Mã Đơn</th>
+                        <th scope="col">Tên</th>
+                        <th scope="col">Địa chỉ</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">SĐT</th>
+                        <th scope="col">Tin nhắn</th>
+                        <th scope="col">Thời gian tạo</th>
+                        <th scope="col">Tạo bởi</th>
+                        <th scope="col">Phương thức thanh toán</th>
+                        <th scope="col">Tình trạng thanh toán</th>
+                        <th scope="col">Trạng thái</th>
+                        <th scope="col">Chỉnh sửa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td scope="row">@item.Id</td>
+                            <td>@item.CustomerName</td>
+                            <td>@item.CustomerAddress</td>
+                            <td>@item.CustomerEmail</td>
+                            <td>@item.CustomerMobile</td>
+                            <td>@item.CustomerMessage</td>
+                            <td>@item.CreatedDate</td>
+                            <td>@item.CreatedBy</td>
+                            <td>@item.PaymentMethod</td>
+                            <td>@(item.PaymentStatus.HasValue ? (item.PaymentStatus.Value ? "Đã thanh toán" : "Chưa thanh toán") : "")</td>
+                            <td>@(item.Status.HasValue ? (item.Status.Value ? "Đã nhận hàng" : "Chưa nhận hàng") : "")</td>
+                            <td>
+                                <a href="/Administrator/Order/Edit/@item.Id" class="ri-edit-box-fill"></a>
+                                <a href="/Administrator/Order/Delete/@item.Id" class="ri-delete-bin-2-fill"></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

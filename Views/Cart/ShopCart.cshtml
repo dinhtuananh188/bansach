@@ -1,0 +1,102 @@
+﻿@{
+    ViewData["Title"] = "ShopCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <title>Giỏ hàng</title>
+</head>
+<div class="session">
+    <div class="container">
+        <div class="row">
+            <h2>Giỏ hàng của bạn</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Ảnh sản phẩm</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Đơn giá</th>
+                        <th>Số lượng</th>
+                        <th>Thành tiền</th>
+                        <th>Chỉnh sửa</th>
+                    </tr>
+                </thead>
+                @{
+                    double tongTien = 0;
+                    List<CartItem> cart = (List<CartItem>)Context.Session.Get<List<CartItem>>("Cart");
+                }
+                <tbody>
+                    @if (cart != null)
+                    {
+                        @foreach (var item in cart)
+                        {
+                            <tr>
+                                <td><img style="width:120px; height: 100%" src="@item.ProductOrder.Image" /></td>
+                                <td>
+                                    @item.ProductOrder.Name
+                                    @item.ProductOrder.Condition
+                                </td>
+                                <td>@item.ProductOrder.Price VNĐ</td>
+                                <td>
+                                    <form method="post" action="@Url.Action("UpdateCartItem", "Cart")">
+                                        <input type="hidden" name="id" value="@item.ProductOrder.Id" />
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                <button type="submit" name="decrement" class="btn btn-default btn-number" data-type="minus" data-field="@("quantity_" + item.ProductOrder.Id)">
+                                                    <span class="glyphicon glyphicon-minus"></span>
+                                                </button>
+                                            </span>
+                                            <input type="text" name="quantity" class="form-control input-number" value="@item.Quantity" min="1" max="100">
+                                            <span class="input-group-btn">
+                                                <button type="submit" name="increment" class="btn btn-default btn-number" data-type="plus" data-field="@("quantity_" + item.ProductOrder.Id)">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </td>
+                                <td>
+                                    @{
+                                        double tong = (double)item.ProductOrder.Price * item.Quantity;
+                                        tongTien += tong;
+                                    }
+                                    @tong VNĐ
+                                </td>
+                                <td>
+                                    <form method="post" action="@Url.Action("RemoveFromCart", "Cart")">
+                                        <input type="hidden" name="id" value="@item.ProductOrder.Id" />
+                                        <button type="submit" class="btn btn-danger">Xoá</button>
+                                    </form>
+                                </td>
+                            </tr>
+
+                        }
+                        
+                    }
+                    <tr>
+                        <td><h3>Thành tiền :</h3></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>@tongTien VNĐ</td>
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <form method="post" action="@Url.Action("Checkout", "Cart")">
+                                <input type="hidden" name="tongTien" value="@tongTien" />
+                                <button type="submit" class="btn essence-btn">Thanh toán</button>
+                            </form>
+                        </td>
+
+                    </tr>
+                </tbody>
+                
+            </table>
+            
+        </div>
+    </div>
+</div>

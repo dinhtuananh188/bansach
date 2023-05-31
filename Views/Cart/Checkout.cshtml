@@ -1,0 +1,118 @@
+﻿
+
+@{
+    ViewData["Title"] = "Checkout Result";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <title>Checkout</title>
+</head>
+<script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+<div class="breadcumb_area bg-img" style="background-image: url('/plug/img/bg-img/breadcumb.jpg');">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="page-title text-center">
+                    <h2>Checkout</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@model Tuple<Sach.Model.Models.Order,List<Sach.Model.Models.Order>>
+<div class="checkout_area section-padding-80">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-12 col-md-6">
+                <div class="checkout_details_area mt-50 clearfix">
+                    @{
+                        int newId = 0;
+                    
+                    @foreach(var item in Model.Item2)
+                    {
+                        newId++;
+                    }
+                    
+                    <div class="cart-page-heading mb-30">
+                        <h5>Thông tin khách hàng</h5>
+                    </div>
+                    
+                        <form asp-action="@Url.Action("Checkout", "Cart")" asp-controller="Cart" method="post">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Item1.Id">Id <span>*</span></label>
+                                <input class="form-control" asp-for="Item1.Id" disabled value="@newId">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Item1.CustomerName">Tên Khách Hàng <span>*</span></label>
+                                    <input class="form-control" asp-for="Item1.CustomerName">
+                            </div>
+                            <div class="col-12 mb-3">
+                                    <label asp-for="Item1.CustomerAddress">Address <span>*</span></label>
+                                    <input class="form-control" asp-for="Item1.CustomerAddress">
+                            </div>
+                                <div class="col-12 mb-3">
+                                    <label asp-for="Item1.CustomerMobile">Số Điện Thoại<span>*</span></label>
+                                    <input class="form-control" asp-for="Item1.CustomerMobile">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label asp-for="Item1.CustomerMessage">Tin nhắn</label>
+                                    <textarea name="editor1" class="form-control" asp-for="Item1.CustomerMessage"></textarea>
+                                    <script>
+                                        CKEDITOR.replace('editor1');
+                                    </script>
+                                </div>
+                                @{
+                                    DateTime currentDateTime = DateTime.Now;
+                                }
+                                <input type="hidden" class="form-control" asp-for="Item1.CreatedDate" disabled value="@currentDateTime">
+                                <input type="hidden" class="form-control" asp-for="Item1.CreatedBy" disabled value="Admin">
+                        </div>
+                    </form>
+                    }
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-5 ml-lg-auto">
+                <div class="order-details-confirmation">
+
+                    <div class="cart-page-heading">
+                        <h5>Your Order</h5>
+                        <p>The Details</p>
+                    </div>
+
+                    <ul class="order-details-form mb-4">
+                        <li><span>Total</span> <span>@ViewBag.TongTien VNĐ</span></li>
+                    </ul>
+                    <form asp-action="@Url.Action("Checkout", "Cart")" asp-controller="Cart" method="post">
+                    <div id="accordion" role="tablist" class="mb-4">
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingOne">
+                                <h6 class="mb-0">
+                                    <label>
+                                        <input type="radio" asp-for="Item1.PaymentMethod" name="paymentMethod" value="Chuyển khoản" />
+                                        Chuyển khoản
+                                    </label>
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingTwo">
+                                <h6 class="mb-0">
+                                    <label>
+                                        <input type="radio" asp-for="Item1.PaymentMethod" name="paymentMethod" value="COD" />
+                                        COD
+                                    </label>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+
+                    <button href="@Url.Action("ThankYou", "Cart")" type="submit" class="btn essence-btn">Đặt hàng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

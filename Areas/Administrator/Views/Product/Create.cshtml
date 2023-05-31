@@ -1,0 +1,114 @@
+﻿@model Sach.Model.Models.Product
+@using Microsoft.AspNetCore.Http
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+<script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+<form asp-action="Create" asp-controller="Product" method="post" class="row g-3">
+    <div class="col-md-3">
+        <label asp-for="Id" class="form-label">Mã SP</label>
+        <input class="form-control" asp-for="Id">
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Name" class="form-label">Tên SP</label>
+        <input class="form-control" asp-for="Name">
+    </div>
+    <div class="col-md-12">
+        <label asp-for="CategoryId" class="form-label">Mã danh mục sản phẩm</label>
+        <input class="form-control" asp-for="CategoryId">
+    </div>
+    <div class="col-6">
+        <label asp-for="Author" class="form-label">Tác giả</label>
+        <input class="form-control" asp-for="Author">
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Publisher" class="form-label">Nhà xuất bản</label>
+        <input class="form-control" asp-for="Publisher">
+    </div>
+    <div class="col-4">
+        <label asp-for="PublishedYear" class="form-label">Năm xuất bản</label>
+        <input class="form-control" asp-for="PublishedYear">
+    </div>
+    <br />
+    
+    <div class="col-md-6">
+        <label asp-for="Image" class="form-label">Ảnh (Link)</label>
+        <input class="form-control" asp-for="Image">
+    </div>
+    
+
+    <div class="col-md-6">
+        <label asp-for="MoreImage" class="form-label">Ảnh thêm về SP (Link, cách nhau bởi dấu ";")</label>
+        <input class="form-control" asp-for="MoreImage" multiple>
+    </div>
+
+   
+    <div class="col-4">
+        <label asp-for="Price" class="form-label">Giá</label>
+        <input class="form-control" asp-for="Price">
+    </div>
+    <div class="col-4">
+        <label asp-for="Quantity" class="form-label">Số lượng</label>
+        <textarea name="editor1"class="form-control" asp-for="Quantity"></textarea>
+        <script>
+            CKEDITOR.replace('editor1');
+        </script>
+    </div>
+    <div class="col-12">
+        <label asp-for="Description" class="form-label">Mô tả</label>
+        <input class="form-control" asp-for="Description">
+    </div>
+    <fieldset class="row mb-6">
+        <legend class="col-form-label col-sm-2 pt-0">Trạng thái</legend>
+        <div class="col-sm-10" asp-for="Status">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" asp-for="Status" value="True" checked>
+                <label class="form-check-label" asp-for="Status" for="gridRadios1">
+                    Còn hàng
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" asp-for="Status" value="False">
+                <label class="form-check-label" asp-for="Status" for="gridRadios2">
+                    Hết hàng
+                </label>
+            </div>
+        </div>
+    </fieldset>
+    <div class="col-md-4">
+        <label asp-for="ViewCount" class="form-label">Lượt xem</label>
+        <input class="form-control" asp-for="ViewCount">
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Condition" class="form-label">Tình trạng sách</label>
+        <input class="form-control" asp-for="Condition">
+    </div>
+    <fieldset class="row mb-4">
+        <legend class="col-form-label col-sm-2 pt-0">Trạng thái xuất bản</legend>
+        <div class="col-sm-4" asp-for="PublicationStatus">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" asp-for="PublicationStatus" value="Còn xuất bản">
+                <label class="form-check-label" asp-for="PublicationStatus" for="gridRadios1">
+                    Còn xuất bản
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" asp-for="PublicationStatus" value="Không còn xuất bản">
+                <label class="form-check-label" asp-for="PublicationStatus" for="gridRadios2">
+                    Không còn xuất bản
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" asp-for="PublicationStatus" value="Phục chế">
+                <label class="form-check-label" asp-for="PublicationStatus" for="gridRadios2">
+                    Phục chế
+                </label>
+            </div>
+        </div>
+    </fieldset>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary" href="/Administrator/Product/Index">Submit</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
+    </div>
+</form>

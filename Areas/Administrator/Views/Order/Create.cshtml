@@ -1,0 +1,96 @@
+﻿@model Sach.Model.Models.Order
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
+}
+
+<form asp-action="Create" asp-controller="Order" method="post" class="row g-3">
+    <div class="col-md-2">
+        <label asp-for="Id" class="form-label">Mã Đơn</label>
+        <input class="form-control" asp-for="Id">
+    </div>
+    <div class="col-md-8">
+        <label asp-for="CustomerName" class="form-label">Tên Khách Hàng</label>
+        <input class="form-control" asp-for="CustomerName">
+    </div>
+    <div class="col-md-12">
+        <label asp-for="CustomerAddress" class="form-label">Địa Chỉ</label>
+        <input class="form-control" asp-for="CustomerAddress">
+    </div>
+    <div class="col-6">
+        <label asp-for="CustomerEmail" class="form-label">Email</label>
+        <input class="form-control" asp-for="CustomerEmail">
+    </div>
+    <div class="col-md-6">
+        <label asp-for="CustomerMobile" class="form-label">SĐT</label>
+        <input class="form-control" asp-for="CustomerMobile">
+    </div>
+    <div class="col-12">
+        <label asp-for="CustomerMessage" class="form-label">Message</label>
+        <input class="form-control" asp-for="CustomerMessage">
+    </div>
+    <div class="col-md-6">
+        <label asp-for="CreatedDate" class="form-label">Ngày tạo</label>
+        <input type="datetime-local" class="form-control" asp-for="CreatedDate">
+    </div>
+    <div class="col-md-6">
+        <label asp-for="CreatedBy" class="form-label">Người tạo</label>
+        <input class="form-control" asp-for="CreatedBy">
+    </div>
+    <br>
+    <fieldset class="row mb-6">
+        <legend class="col-form-label col-sm-2 pt-0">Phương thức thanh toán</legend>
+        <div class="col-sm-10" asp-for="PaymentMethod">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="Ngân hàng" checked>
+                <label class="form-check-label" asp-for="PaymentMethod" for="gridRadios1">
+                    Thanh toán chuyển khoản
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="COD">
+                <label class="form-check-label" asp-for="PaymentMethod" for="gridRadios2">
+                    COD
+                </label>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset class="row mb-6">
+        <legend class="col-form-label col-sm-2 pt-0">Trạng thái thanh toán</legend>
+        <div class="col-sm-10" asp-for="PaymentStatus">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" asp-for="PaymentStatus" value="True" checked>
+                <label class="form-check-label" asp-for="PaymentStatus" for="gridRadios1">
+                    Đã thanh toán
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" asp-for="PaymentStatus" value="False">
+                <label class="form-check-label" asp-for="PaymentStatus" for="gridRadios2">
+                    Chưa thanh toán
+                </label>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset class="row mb-6">
+        <legend class="col-form-label col-sm-2 pt-0">Tình trạng đơn</legend>
+        <div class="col-sm-10" asp-for="Status">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" asp-for="Status" value="True" checked>
+                <label class="form-check-label" asp-for="Status" for="gridRadios1">
+                    Đã giao
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" asp-for="Status" value="False">
+                <label class="form-check-label" asp-for="Status" for="gridRadios2">
+                    Chưa giao
+                </label>
+            </div>
+        </div>
+    </fieldset>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary" href="/Administrator/Order/Index">Submit</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
+    </div>
+</form>
