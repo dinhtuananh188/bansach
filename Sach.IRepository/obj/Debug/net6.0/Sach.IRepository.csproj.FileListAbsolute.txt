@@ -1,0 +1,12 @@
+D:\thuc hanh\Sach.IRepository\bin\Debug\net6.0\Sach.IRepository.deps.json
+D:\thuc hanh\Sach.IRepository\bin\Debug\net6.0\Sach.IRepository.dll
+D:\thuc hanh\Sach.IRepository\bin\Debug\net6.0\Sach.IRepository.pdb
+D:\thuc hanh\Sach.IRepository\obj\Debug\net6.0\Sach.IRepository.csproj.AssemblyReference.cache
+D:\thuc hanh\Sach.IRepository\obj\Debug\net6.0\Sach.IRepository.GeneratedMSBuildEditorConfig.editorconfig
+D:\thuc hanh\Sach.IRepository\obj\Debug\net6.0\Sach.IRepository.AssemblyInfoInputs.cache
+D:\thuc hanh\Sach.IRepository\obj\Debug\net6.0\Sach.IRepository.AssemblyInfo.cs
+D:\thuc hanh\Sach.IRepository\obj\Debug\net6.0\Sach.IRepository.csproj.CoreCompileInputs.cache
+D:\thuc hanh\Sach.IRepository\obj\Debug\net6.0\Sach.IRepository.dll
+D:\thuc hanh\Sach.IRepository\obj\Debug\net6.0\refint\Sach.IRepository.dll
+D:\thuc hanh\Sach.IRepository\obj\Debug\net6.0\Sach.IRepository.pdb
+D:\thuc hanh\Sach.IRepository\obj\Debug\net6.0\ref\Sach.IRepository.dll

@@ -1,0 +1,14 @@
+D:\thuc hanh\Sach.Model\bin\Debug\net6.0\Sach.Model.deps.json
+D:\thuc hanh\Sach.Model\bin\Debug\net6.0\Sach.Model.runtimeconfig.json
+D:\thuc hanh\Sach.Model\bin\Debug\net6.0\Sach.Model.dll
+D:\thuc hanh\Sach.Model\bin\Debug\net6.0\Sach.Model.pdb
+D:\thuc hanh\Sach.Model\obj\Debug\net6.0\Sach.Model.csproj.AssemblyReference.cache
+D:\thuc hanh\Sach.Model\obj\Debug\net6.0\Sach.Model.GeneratedMSBuildEditorConfig.editorconfig
+D:\thuc hanh\Sach.Model\obj\Debug\net6.0\Sach.Model.AssemblyInfoInputs.cache
+D:\thuc hanh\Sach.Model\obj\Debug\net6.0\Sach.Model.AssemblyInfo.cs
+D:\thuc hanh\Sach.Model\obj\Debug\net6.0\Sach.Model.csproj.CoreCompileInputs.cache
+D:\thuc hanh\Sach.Model\obj\Debug\net6.0\Sach.Model.dll
+D:\thuc hanh\Sach.Model\obj\Debug\net6.0\refint\Sach.Model.dll
+D:\thuc hanh\Sach.Model\obj\Debug\net6.0\Sach.Model.pdb
+D:\thuc hanh\Sach.Model\obj\Debug\net6.0\Sach.Model.genruntimeconfig.cache
+D:\thuc hanh\Sach.Model\obj\Debug\net6.0\ref\Sach.Model.dll
